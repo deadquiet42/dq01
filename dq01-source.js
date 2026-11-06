@@ -24,9 +24,9 @@ float N(vec3 p,vec3 d){
   return (.1+.9*max(dot(n,V),0.)*D(p+n*.01))*clamp(1.-a,0.,1.)+pow(1.-abs(dot(n,d)),4.)*.5+pow(max(dot(n,-V.zyx),0.),8.)*.4;
 }
 void main(){
-  vec2 v=(gl_FragCoord.xy-.5*R)/R.y,u=v*12.-vec2(0,1);
+  vec2 v=(gl_FragCoord.xy-.5*R)/min(R.x*.8,R.y),u=v*12.-vec2(0,1);
   float t=T,c=0.,s=t-16.,h=sin(clamp((s-1.)/13.,0.,1.)*3.1416);
-  X=18./R.y;S=1.;K=1.;
+  X=18./min(R.x*.8,R.y);S=1.;K=1.;
   if(t>16.&&t<32.){
     float w=smoothstep(0.,3.,s)*smoothstep(16.,13.,s);
     A=6.2832*smoothstep(1.,14.,s);Y=sin(A)*.3;Z=.6*w;
